@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { query } from "@/app/api/db";
 import { NextResponse } from "next/server";
 import { RowDataPacket } from "mysql2";
