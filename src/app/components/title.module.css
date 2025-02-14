@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'Dokrip';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media (max-width: 425px) {
+  /* 모바일 스타일 */
+  .bong1 {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    z-index: 3;
+    width: 220px;
+    height:21px;
+    background-image: url("../../../public/s-bong.png");
+  }
+  .page{
+    position: relative;
+    width: 185px;
+    height:250px;
+    transform: translate(18%, 70%);
+    z-index: 2;
+    background-image: url("../../../public/s-page.png");
+  }
+  .text_1{
+    font-family: Dokrip;
+    width: 20px;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    font-size: 2em;
+  }
+  .text_2{
+    position: absolute;
+    width: 20px;
+    font-family: Dokrip;
+    left: 60%;
+    top: 15%;
+    font-size: 2em;
+  }
+  .bong2 {
+    position: absolute; /* ✅ 배경을 기준으로 중앙 배치 */
+    top: 51%;
+    left: 5%;
+    z-index: 3;
+    width: 220px;
+    height:21px;
+    background-image: url("../../../public/s-bong.png");
+  }
+}
+
+@media (min-width: 426px) {
+  /* 노트북 스타일 */
+  .bong1 {
+    position: absolute; /* ✅ 배경을 기준으로 중앙 배치 */
+    top: 30%;
+    left: 20%;
+    transform: translate(-80%, -50%);
+    z-index: 3;
+    left: 40%;
+    width: 230px;
+    height: 24px;
+    background-image: url("../../../public/bong.png");
+  }
+}
