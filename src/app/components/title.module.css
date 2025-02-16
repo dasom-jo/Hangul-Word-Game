@@ -8,9 +8,9 @@
 @media (max-width: 425px) {
   /* 모바일 스타일 */
   .bong1 {
-    position: absolute;
-    top: 20%;
-    left: 5%;
+    position: fixed;
+    top: 155px;
+    left: 25px;
     z-index: 3;
     width: 220px;
     height:21px;

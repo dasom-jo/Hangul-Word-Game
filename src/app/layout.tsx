@@ -3,7 +3,7 @@ import "./globals.css";
 export const metadata = {
   title: "한글 낱말 게임",
   description: "한글 낱말 게임을 즐겨보세요!",
-  viewport: "width=device-width, initial-scale=1.0",
+  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1",
 };
 
 export default function RootLayout({
