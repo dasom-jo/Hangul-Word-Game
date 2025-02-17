@@ -1,6 +1,52 @@
-.btn {
-    width: 100px;
-    height: 100px;
-    background-color: yellow;
-    color: red;
+@media (max-width: 425px) {
+  .btn {
+    position: fixed;
+    bottom: 200px; /* 화면 하단에서 200px 위 */
+    left: 50%; /* 가로 중앙 정렬 */
+    transform: translateX(-50%);
+    width: 240px;
+    height: 50px;
+    background-color: #fee500; /* 카카오 노란색 */
+    color: #3c1e1e; /* 카카오 브라운 컬러 */
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px; /* 둥근 모서리 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .btn:hover {
+    background-color: #fdd835; /* hover 시 약간 어두운 노란색 */
+  }
+}
+@media (min-width: 426px) {
+    .btn {
+        position: fixed;
+        bottom: 100px; /* 화면 하단에서 200px 위 */
+        left: 50%; /* 가로 중앙 정렬 */
+        transform: translateX(-50%);
+        width: 300px;
+        height: 80px;
+        background-color: #fee500; /* 카카오 노란색 */
+        color: #3c1e1e; /* 카카오 브라운 컬러 */
+        font-size: 2em;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px; /* 둥근 모서리 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .btn:hover {
+        background-color: #fdd835; /* hover 시 약간 어두운 노란색 */
+      }
 }
