@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import styles from "./background.module.css";
-import KakaoLoginButton from "./KakaoLoginButton";
 
 export default function Background() {
   return (
@@ -11,9 +10,7 @@ export default function Background() {
         <source src="/video.mp4" type="video/mp4" />
       </video>
       {/* 정가운데 배치할 요소 */}
-      <div className={styles.centerContent}>
-        <KakaoLoginButton/>
-      </div>
+      <div className={styles.centerContent}></div>
     </div>
   );
 }
