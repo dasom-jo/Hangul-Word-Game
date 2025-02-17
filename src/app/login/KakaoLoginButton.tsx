@@ -1,19 +1,25 @@
 "use client";
-import { signIn,signOut, useSession } from "next-auth/react";
-import styles from "./KakaoLoginButton.module.css";
+import { useEffect } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import styles from "./kakaoLoginButton.module.css";
 import Select from "../select/page";
+import { useUserDB } from "./userDB"; // 경로 수정
 
 const KakaoLoginButton = () => {
   const { data: session } = useSession();
-  console.log("세션 정보", session);
+  console.log(session);
+  const { handleUser } = useUserDB();
+
+  useEffect(() => {
+    if (session?.user?.name) {
+      handleUser(); // 로그인한 유저를 DB에 저장 (중복 검사 포함)
+    }
+  }, [handleUser, session]); // 세션 정보가 바뀔 때마다 실행
 
   return (
     <div>
       {session ? (
         <div>
-          {/* <div className={styles.speech}>
-            <div className={styles.speechText}>환영합니다, {session.user?.name}님!</div>
-          </div> */}
           <button className={styles.btn} onClick={() => signOut()}>
             로그아웃
           </button>
