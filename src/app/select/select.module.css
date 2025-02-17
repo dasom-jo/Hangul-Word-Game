@@ -1,44 +1,76 @@
 .container {
-position: fixed;
+  position: fixed;
   display: inline-flex;
-  width: 400px;
-  bottom: 150px; /* 화면 하단에서 200px 위 */
+  width: 450px;
+  bottom: 30px; /* 화면 하단에서 200px 위 */
   left: 50%; /* 가로 중앙 정렬 */
-  transform: translateX(-43%);
+  transform: translateX(-50%);
 }
-.btn {
-  margin: 20px;
-  width: 130px;
-  height: 130px;
-  background-color: #fee500; /* 카카오 노란색 */
-  color: #3c1e1e; /* 카카오 브라운 컬러 */
-  font-size: 1.5em;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px; /* 둥근 모서리 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-  transition: background-color 0.2s ease-in-out;
+@media (max-width: 425px) {
+  /* 모바일 버전 */
+  .container {
+    position: fixed;
+    display: inline-flex;
+    width: 350px;
+    bottom: 180px; /* 화면 하단에서 200px 위 */
+    left: 50%; /* 가로 중앙 정렬 */
+    transform: translateX(-50%);
+  }
+  .btn {
+    padding: 10px;
+    margin: 20px;
+    width: 130px;
+    height: 100px;
+    background-color: #fee500; /* 카카오 노란색 */
+    color: #3c1e1e; /* 카카오 브라운 컬러 */
+    font-size: 1.5em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px; /* 둥근 모서리 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease-in-out;
+  }
+}
+@media (min-width: 426px) {
+  /* 데스크탑 버전 */
+  .btn {
+    margin: 20px;
+    width: 200px;
+    height: 150px;
+    background-color: #fee500; /* 카카오 노란색 */
+    color: #3c1e1e; /* 카카오 브라운 컬러 */
+    font-size: 2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px; /* 둥근 모서리 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease-in-out;
+  }
 }
 
 /* "게임 시작" 버튼 색상 */
 .startBtn {
-    background-color: #ff5733; /* 주황색 */
-    color: white;
-  }
+  background-color: #ff5733; /* 주황색 */
+  color: white;
+}
 
-  .startBtn:hover {
-    background-color: #68210c; /* 어두운 주황색 */
-  }
+.startBtn:hover {
+  background-color: #68210c; /* 어두운 주황색 */
+}
 /* "단어 복습" 버튼 색상 */
 .reviewBtn {
-    background-color: #3498db; /* 파란색 */
-    color: white;
-  }
+  background-color: #3498db; /* 파란색 */
+  color: white;
+}
 
-  .reviewBtn:hover {
-    background-color: #0e3046; /* 어두운 파란색 */
-  }
+.reviewBtn:hover {
+  background-color: #0e3046; /* 어두운 파란색 */
+}
