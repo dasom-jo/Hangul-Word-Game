@@ -20,7 +20,7 @@ const KakaoLoginButton = () => {
     <div>
       {session ? (
         <div>
-          <button className={styles.btn} onClick={() => signOut()}>
+          <button className={styles.signOutBtn} onClick={() => signOut()}>
             로그아웃
           </button>
           <Select />
