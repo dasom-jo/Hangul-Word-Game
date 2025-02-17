@@ -1,6 +1,7 @@
 @font-face {
-  font-family: 'Dokrip';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+  font-family: "Dokrip";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -13,18 +14,18 @@
     left: 10px;
     z-index: 3;
     width: 220px;
-    height:21px;
+    height: 21px;
     background-image: url("../../../public/s-bong.png");
   }
-  .page{
+  .page {
     position: relative;
     width: 185px;
-    height:250px;
+    height: 250px;
     transform: translate(10%, 90%);
     z-index: 2;
     background-image: url("../../../public/s-page.png");
   }
-  .text_1{
+  .text_1 {
     font-family: Dokrip;
     width: 20px;
     position: absolute;
@@ -32,7 +33,7 @@
     top: 5%;
     font-size: 2em;
   }
-  .text_2{
+  .text_2 {
     position: absolute;
     width: 20px;
     font-family: Dokrip;
@@ -46,57 +47,73 @@
     left: 10px;
     z-index: 3;
     width: 220px;
-    height:21px;
+    height: 21px;
     background-image: url("../../../public/s-bong.png");
   }
 }
-
 @media (min-width: 426px) {
-  /* 노트북 스타일 */
-  .bong1 {
-    position: fixed;
-    top: 100px;
-    left: 10px;
-    transform: translate(-80%, -50%);
-    z-index: 3;
-    left: 40%;
-    width: 230px;
-    height: 24px;
-    background-image: url("../../../public/bong.png");
-  }
-  .page{
+  /* 컨테이너 추가 */
+  .container {
     position: relative;
-    width: 185px;
-    height:250px;
-    transform: translate(132%, 43%);
-    z-index: 2;
-    background-image: url("../../../public/s-page.png");
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
   }
-  .text_1{
-    font-family: Dokrip;
-    width: 20px;
+
+  /* 봉1 */
+  .bong1 {
     position: absolute;
-    left: 30%;
-    top: 5%;
-    font-size: 2em;
-  }
-  .text_2{
-    position: absolute;
-    width: 20px;
-    font-family: Dokrip;
-    left: 60%;
-    top: 15%;
-    font-size: 2em;
-  }
-  .bong2 {
-    position: fixed;
-    top: 360px;
-    left: 10px;
-    transform: translate(-80%, -50%);
+    top: 100px;
+    left: 50%;
+    transform: translateX(-90%);
     z-index: 3;
-    left: 40%;
-    width: 230px;
-    height: 24px;
-    background-image: url("../../../public/bong.png");
+    width: 300px;
+    height: 32px;
+    background-image: url("../../../public/L-bong.png");
+  }
+
+  /* 페이지 */
+  .page {
+    position: absolute;
+    width: 80%;
+    max-width: 280px;
+    height: 456px;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-90%);
+    background-image: url("../../../public/L-page.png");
+    z-index: 2;
+  }
+
+  /* 텍스트 1 */
+  .text_1 {
+    font-family: Dokrip;
+    width: 20px;
+    position: absolute;
+    left: 25%;
+    top: 5%;
+    font-size: 4em;
+  }
+
+  /* 텍스트 2 */
+  .text_2 {
+    position: absolute;
+    width: 20px;
+    font-family: Dokrip;
+    left: 55%;
+    top: 10%;
+    font-size: 4em;
+  }
+
+  /* 봉2 */
+  .bong2 {
+    position: absolute;
+    top: 550px;
+    left: 50%;
+    transform: translateX(-90%);
+    z-index: 3;
+    width: 300px;
+    height: 32px;
+    background-image: url("../../../public/L-bong.png");
   }
 }

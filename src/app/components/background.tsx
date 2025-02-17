@@ -10,9 +10,9 @@ export default function Background() {
       <video className={styles.backgroundVideo} autoPlay loop muted playsInline>
         <source src="/video.mp4" type="video/mp4" />
       </video>
-
       {/* 정가운데 배치할 요소 */}
       <div className={styles.centerContent}>
+        <button>카카오 로그인</button>
       </div>
     </div>
   );
