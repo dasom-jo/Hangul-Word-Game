@@ -1,6 +1,8 @@
+import TimerBar from "./components/timerBar";
+
 const Game = () => {
     return ( <div>
-게임페이지
+<TimerBar/>
     </div> );
 }
 
