@@ -1,9 +1,9 @@
 "use client";
 import { useEffect } from "react";
-import { signIn, useSession } from "next-auth/react";
-import styles from "./kakaoLoginButton.module.css";
-import Select from "../select/page";
-import { useUserDB } from "./userDB"; // 경로 수정
+import { signIn,signOut, useSession } from "next-auth/react";
+import styles from "../kakaoLoginButton.module.css";
+import Select from "../../select/page";
+import { useUserDB } from "../hooks/useUserDB";
 
 const KakaoLoginButton = () => {
   const { data: session } = useSession();
@@ -20,9 +20,9 @@ const KakaoLoginButton = () => {
     <div>
       {session ? (
         <div>
-          {/* <button className={styles.signOutBtn} onClick={() => signOut()}>
+          <button className={styles.signOutBtn} onClick={() => signOut()}>
             로그아웃
-          </button> */}
+          </button>
           <Select />
         </div>
       ) : (

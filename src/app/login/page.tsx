@@ -1,13 +1,11 @@
-import Background from "../components/background";
 import Title from "../components/title";
-import KakaoLoginButton from "./kakaoLoginButton";
+import KakaoLoginButton from "./components/kakaoLoginButton";
 
 const Login = () => {
   return (
     <div>
-      <Background />
-      <Title />
-      <KakaoLoginButton/>
+      <Title/>
+      <KakaoLoginButton />
     </div>
   );
 };

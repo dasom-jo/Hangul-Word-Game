@@ -1,3 +1,4 @@
+import Background from "./components/background";
 import "./globals.css";
 import ClientProvider from "./providers/ClientProvider";
 
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <ClientProvider>{children}</ClientProvider>
+        <ClientProvider>
+          <Background />
+          {children}
+        </ClientProvider>
       </body>
     </html>
   );
