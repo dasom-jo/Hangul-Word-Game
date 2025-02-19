@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import useStartBtn from "../store/startBtn";
 
-const useTimer = (duration = 5) => {
+const useTimer = (duration = 30) => {
   const [progress, setProgress] = useState(0);
   const [completed, setCompleted] = useState(false); // 타이머 완료 여부
   const { isRunning, startTimer, stopTimer } = useStartBtn();

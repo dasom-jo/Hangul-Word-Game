@@ -1,34 +1,52 @@
-.container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* 시작 버튼 */
-.btn {
-  margin-top: 10px;
-  z-index: 10;
-  width: 100px;
-  height: 50px;
-  background-color:red;
-  font-size: 1em;
-
-}
-/* 전체 시간을 나타내는 회색 바 */
+/* 전체 시간을 나타내는 회색 바 (최상단) */
 .grayBar {
-  position: absolute;
+  position: fixed;
+  top: 50;
+  left: 50%;
+  transform: translateX(-50%);
   width: 70%;
+  max-width: 600px;
   background-color: #ddd;
-  height: 25px;
+  height: 20px;
   border-radius: 5px;
-  margin-top: 100px;
 }
-/* 지나가는 시간을 나타내는 파랑 바 */
+
+/* 지나가는 시간을 나타내는 파란 바 */
 .buleBar {
-  position: relative;
+  position: absolute;
   height: 100%;
   width: 100%;
   background-color: #ff0000;
   transition: width 1s linear;
   border-radius: 5px;
+}
+
+/* 시작 버튼 정가운데 배치 */
+.btn {
+  color: #ff0404;
+  z-index: 10;
+  width: 500px; /* 단위 추가 */
+  height: 50px;
+  font-size: 7em;
+  font-weight: 600;
+  position: fixed; /* 화면 전체 기준 중앙 정렬 */
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* 애니메이션 적용 */
+  animation: heartbeat 1.2s infinite ease-in-out;
+}
+
+/* 두근두근 애니메이션 */
+@keyframes heartbeat {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1); /* 살짝 커짐 */
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
