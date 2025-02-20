@@ -9,7 +9,11 @@ interface TimerStore {
 
 const useTimerStore = create<TimerStore>((set) => ({
   isRunning: false,
-  startTimer: () => set({ isRunning: true }),
+  startTimer: () => {
+    console.log("✅ startTimer() 실행됨!");
+    set({ isRunning: true });
+  },
+
   stopTimer: () => set({ isRunning: false }),
 }));
 

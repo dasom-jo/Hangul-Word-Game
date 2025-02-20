@@ -34,15 +34,9 @@ const useTimer = (duration = 30) => {
       }
     };
   }, [isRunning, stopTimer, duration]);
-
-  // const resetTimer = useCallback(() => {
-  //   setProgress(0);
-  //   setCompleted(false);
-  //   stopTimer();
-  // }, [stopTimer]);
-  // 상태 리셋이 아니라 페이지를 새로고침하도록 변경
-   const resetTimer = () => {
-    window.location.reload(); // 페이지 새로고침 (F5 기능과 동일)
+  //다시보기 시  새로고침
+  const resetTimer = () => {
+    window.location.reload();
   };
 
   return { progress, isRunning, startTimer, resetTimer, completed };
