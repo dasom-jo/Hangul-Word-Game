@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
-import useStartBtn from "../store/startBtn";
+import { useCallback, useEffect, useState } from "react";
+import useTimerStore from "../store/timerStore";
 
-const useTimer = (duration = 30) => {
+const useTimer = (duration = 5) => {
   const [progress, setProgress] = useState(0);
-  const [completed, setCompleted] = useState(false); // 타이머 완료 여부
-  const { isRunning, startTimer, stopTimer } = useStartBtn();
+  const [completed, setCompleted] = useState(false);
+  const { isRunning, startTimer, stopTimer } = useTimerStore();
 
   useEffect(() => {
     if (!isRunning) return;
@@ -15,8 +15,9 @@ const useTimer = (duration = 30) => {
         const newProgress = prev + 100 / duration;
         if (newProgress >= 100) {
           clearInterval(interval);
-          setTimeout(() => setCompleted(true), 5000); // 5초 후 버튼 표시
-          stopTimer();
+          stopTimer(); // 먼저 타이머 멈춤
+          setProgress(100); // progress를 명시적으로 100으로 설정
+          setTimeout(() => setCompleted(true), 5000); // 5초 후 completed 설정
           return 100;
         }
         return newProgress;
@@ -26,11 +27,11 @@ const useTimer = (duration = 30) => {
     return () => clearInterval(interval);
   }, [isRunning, stopTimer, duration]);
 
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
     setProgress(0);
-    setCompleted(false); // 다시하기 버튼 숨김
+    setCompleted(false);
     stopTimer();
-  };
+  }, [stopTimer]);
 
   return { progress, isRunning, startTimer, resetTimer, completed };
 };
