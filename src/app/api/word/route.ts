@@ -19,7 +19,11 @@ export async function GET() {
           contents: [
             {
               role: "user",
-              parts: [{ text: "한글 단어 와 영어 번역을 제공해.대신 구조는 동일하게 {한글,영어},{한글,영어}형식으로, 게임에 사용할 단어이므로 명사만 제공해." }],
+              parts: [
+                {
+                  text: "한글 명사 10개와 각 명사의 영어 번역을 {한글: '명사', 영어: 'noun'} 형식으로 제공하되 되도록이면 중복된 단어는 제공하지 말아줘.결과는 JSON 배열로 반환해줘. 예: [{한글: '사과', 영어: 'apple'}, {한글: '바나나', 영어: 'banana'}, ...].",
+                },
+              ],
             },
           ],
         }),
@@ -31,13 +35,19 @@ export async function GET() {
 
     if (!data.candidates || data.candidates.length === 0) {
       console.error("Gemini API 응답이 비어 있습니다:", data);
-      return NextResponse.json({ error: "단어를 가져올 수 없습니다." }, { status: 500 });
+      return NextResponse.json(
+        { error: "단어를 가져올 수 없습니다." },
+        { status: 500 }
+      );
     }
 
     const word = data.candidates[0]?.content?.parts[0]?.text?.trim() || "한국";
     return NextResponse.json({ word });
   } catch (error) {
     console.error("Gemini 단어 생성 오류:", error);
-    return NextResponse.json({ error: "단어를 가져올 수 없습니다." }, { status: 500 });
+    return NextResponse.json(
+      { error: "단어를 가져올 수 없습니다." },
+      { status: 500 }
+    );
   }
 }

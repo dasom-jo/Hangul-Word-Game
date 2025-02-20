@@ -4,7 +4,7 @@ import useTimer from "../hooks/useTimer";
 
 const TimerBar = () => {
   const { progress, isRunning, startTimer, resetTimer, completed } =
-    useTimer(5);
+    useTimer(30);
 
   return (
     <div className={styles.container}>

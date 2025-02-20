@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <ClientProvider>
-          {/* <Background /> */}
+          <Background />
           {children}
         </ClientProvider>
       </body>

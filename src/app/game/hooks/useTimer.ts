@@ -2,29 +2,35 @@
 import { useCallback, useEffect, useState } from "react";
 import useTimerStore from "../store/timerStore";
 
-const useTimer = (duration = 5) => {
+const useTimer = (duration = 30) => {
   const [progress, setProgress] = useState(0);
   const [completed, setCompleted] = useState(false);
   const { isRunning, startTimer, stopTimer } = useTimerStore();
 
   useEffect(() => {
-    if (!isRunning) return;
+    let intervalId: NodeJS.Timeout;
 
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        const newProgress = prev + 100 / duration;
-        if (newProgress >= 100) {
-          clearInterval(interval);
-          stopTimer(); // 먼저 타이머 멈춤
-          setProgress(100); // progress를 명시적으로 100으로 설정
-          setTimeout(() => setCompleted(true), 5000); // 5초 후 completed 설정
-          return 100;
-        }
-        return newProgress;
-      });
-    }, 1000);
+    if (isRunning) {
+      intervalId = setInterval(() => {
+        setProgress((prev) => {
+          const newProgress = prev + 100 / duration;
+          if (newProgress >= 100) {
+            clearInterval(intervalId);
+            stopTimer();
+            setProgress(100);
+            setCompleted(true); // 상태 업데이트를 안전하게
+            return 100;
+          }
+          return newProgress;
+        });
+      }, 1000);
+    }
 
-    return () => clearInterval(interval);
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
   }, [isRunning, stopTimer, duration]);
 
   const resetTimer = useCallback(() => {
