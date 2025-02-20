@@ -16,9 +16,11 @@ const useTimer = (duration = 30) => {
           const newProgress = prev + 100 / duration;
           if (newProgress >= 100) {
             clearInterval(intervalId);
-            stopTimer();
-            setProgress(100);
-            setCompleted(true); // 상태 업데이트를 안전하게
+            setTimeout(() => {
+              stopTimer();
+              setProgress(100);
+              setCompleted(true);
+            }, 0);
             return 100;
           }
           return newProgress;
