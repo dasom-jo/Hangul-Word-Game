@@ -1,23 +1,25 @@
 .words {
-    position: absolute; /* 또는 fixed */
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* 가운데 정렬 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100; /* 최상위로 배치 */
-    color: rgb(0, 0, 0); /* 배경에 대비되도록 텍스트 색상 변경 */
-    font-size: 2rem;
-    font-weight: 700;
-    background-color: bisque;
-  }
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 700px;
+  max-width: 70%;
+  height: 100vh;
+  overflow: hidden;
+  background-position: center;
+  transform: translateX(-50%); /* ✅ 정중앙 정렬 */
+}
 
-.word{
+.word {
+  position: absolute; /* ✅ 개별 단어 위치 조정 가능 */
   background-color: aliceblue;
-  margin: 10px;
-  display: block; /* 개별 요소가 한 줄씩 배치됨 */
   padding: 5px 10px;
   border-radius: 5px;
-
-  }
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s linear;
+}
