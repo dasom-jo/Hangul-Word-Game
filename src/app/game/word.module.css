@@ -2,7 +2,7 @@
   position: absolute;
   left: 50%;
   top: 0;
-  width: 650px; /* 원하는 너비 설정 */
+  width: 700px; /* 원하는 너비 설정 */
   max-width: 70%;
   height: 100vh;
   transform: translateX(-50%);

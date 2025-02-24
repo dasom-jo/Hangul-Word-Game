@@ -59,7 +59,7 @@ export default function useWordGame() {
 
       const newWords = parsedWords.map(([korean]: [string, string]) => ({
         korean,
-        x: Math.random() * (window.innerWidth - 100),
+        x: Math.random() * (window.innerWidth - 350),
         y: -50,
         speed: Math.random() * 0.5 + 0.3,
       }));
