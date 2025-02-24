@@ -2,8 +2,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import useTimer from "./useTimer"; // 30초 타이머 관리 커스텀 훅
 
-interface Word {
+export interface Word {
   korean: string;
+  english: string;
   x: number;
   y: number;
   speed: number;
@@ -56,21 +57,23 @@ export default function useWordGame() {
         parsedWords = defaultWords;
       }
       //단어를 word객체로 변환하여 랜덤한 위치(x),초기 위치 (y=-50), 랜덤속도(0.3~0.8) 설정
-      const newWords = parsedWords.map(([korean]: [string, string]) => ({
+      const newWords = parsedWords.map(([korean, english]: [string, string]) => ({
         korean,
+        english, // 영어도 저장
         x: Math.random() * (window.innerWidth - 350),
         y: -50,
         speed: Math.random() * 0.5 + 0.3,
       }));
-
+      console.log("📢 영어 단어 목록:", newWords.map(word => word.english));
       setWords((prevWords) => [...prevWords, ...newWords]); //기존단어에 새 단어 추가
     } catch (error) {
       console.error("❌ 단어 불러오기 실패:", error);
       //api오류시 defaultWords 를 사용하여 랜덤 배치
       setWords((prevWords) => [
         ...prevWords,
-        ...defaultWords.map(([korean]) => ({
+        ...defaultWords.map(([korean, english]) => ({
           korean,
+          english,
           x: Math.random() * (window.innerWidth - 100),
           y: -50,
           speed: Math.random() * 0.5 + 0.3,
@@ -81,7 +84,7 @@ export default function useWordGame() {
     }
   }, [isFetching]);
 
-  // **게임 시작 시 첫 단어 추가**
+  // 게임 시작 시 첫 단어 추가
   useEffect(() => {
     if (isRunning && words.length === 0) { //타이머가 시작될 경우 호출
       fetchNewWords();
@@ -114,7 +117,6 @@ export default function useWordGame() {
       animationFrameRef.current = requestAnimationFrame(updateWords);
     };
     animationFrameRef.current = requestAnimationFrame(updateWords);
-
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -127,5 +129,6 @@ export default function useWordGame() {
     wordsRef, // 단어를 표시할 ref 참조
     startTimer, //타이머 시작 함수
     completed, //게임 종료 여부
+    setWords
   };
 }
