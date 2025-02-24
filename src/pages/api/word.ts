@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               role: "user",
               parts: [
                 {
-                  text: `한글 명사 10개와 각 명사의 영어 번역을 ["한글", "영어"] 형식의 JSON 배열로 반환해줘.
+                  text: `한글 명사 7개와 각 명사의 영어 번역을 ["한글", "영어"] 형식의 JSON 배열로 반환해줘.
               이미 제공한 단어는 포함하지 마.
               결과는 반드시 JSON 배열 형식으로 반환해야 해. 예: [["사과", "apple"], ["바나나", "banana"], ["고양이", "cat"], ["집", "house"]]`,
                 },
