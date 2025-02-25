@@ -26,6 +26,7 @@ const defaultWords: [string, string][] = [
 export default function useWordGame() {
   const [words, setWords] = useState<Word[]>([]); //화면 단어
   const wordsRef = useRef<HTMLDivElement | null>(null); //단어 표시를 위한 dom 요소 참조
+  const [removedWords, setRemovedWords] = useState<Word[]>([]); // 화면 밖으로 벗어난 단어들을 저장
   const animationFrameRef = useRef<number | null>(null); //애니메이션 조정 및 무한루프 관리
   const [isFetching, setIsFetching] = useState(false);//중복 호출 관리
   const { isRunning, startTimer, completed } = useTimer(30); // 타이머 실행,현재진행상태,종료여부 관리
@@ -105,18 +106,40 @@ export default function useWordGame() {
   // 단어가 내려가는 로직
   useEffect(() => {
     const updateWords = () => {
-      setWords((prevWords) =>
-        prevWords
-          .map((word) => ({
-            ...word,
-            y: word.y + word.speed,
-          }))
-          .filter((word) => word.y < window.innerHeight + 50) //window.innerHeight 벗어날시 삭제
-      );
-      //requestAnimationFrame를 이용해 단어가 speed속도로 아래로 움직이도록 설정
+      setWords((prevWords) => {
+        // 각 단어의 y 값을 speed만큼 증가
+        const updatedWords = prevWords.map((word) => ({
+          ...word,
+          y: word.y + word.speed,
+        }));
+
+        // 화면 내에 남는 단어들
+        const remainingWords = updatedWords.filter(
+          (word) => word.y < window.innerHeight + 50
+        );
+
+        // 화면 밖으로 벗어난 단어들 (예: 틀린 단어, 스코어 및 복습 페이지에서 사용)
+        const newRemovedWords = updatedWords.filter(
+          (word) => word.y >= window.innerHeight + 50
+        );
+
+        // 누적하여 export: 기존 removedWords에 새로 벗어난 단어들을 추가
+        if (newRemovedWords.length > 0) {
+          setRemovedWords((prevRemoved) => [
+            ...prevRemoved,
+            ...newRemovedWords,
+          ]);
+        }
+        console.log("removedWords",removedWords);
+        return remainingWords;
+      });
+
+      // 다음 애니메이션 프레임에 updateWords 함수 호출
       animationFrameRef.current = requestAnimationFrame(updateWords);
     };
+
     animationFrameRef.current = requestAnimationFrame(updateWords);
+
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -124,11 +147,13 @@ export default function useWordGame() {
     };
   }, []);
 
+
   return {
     words,//현재 단어 리스트
     wordsRef, // 단어를 표시할 ref 참조
     startTimer, //타이머 시작 함수
     completed, //게임 종료 여부
-    setWords
+    setWords,
+    removedWords,   // export된(누적된) 화면 밖 단어들
   };
 }
