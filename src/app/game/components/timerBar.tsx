@@ -1,6 +1,7 @@
 "use client";
 import styles from "../timer.module.css";
 import useTimer from "../hooks/useTimer";
+import GameScore from "./gameScore";
 
 const TimerBar = () => {
   const { progress, isRunning, startTimer, resetTimer, completed } =
@@ -11,11 +12,16 @@ const TimerBar = () => {
       <div className={styles.grayBar}>
         <div className={styles.buleBar} style={{ width: `${progress}%` }} />
       </div>
-      {completed && (
-        <button className={styles.btn} onClick={resetTimer}>
-          다시하기
-        </button>
-      )}
+      <div>
+        {completed && (
+          <>
+            <button className={styles.btn} onClick={resetTimer}>
+              다시하기
+            </button>
+            <GameScore/>
+          </>
+        )}
+      </div>
       {progress == 0 && (
         <button
           className={styles.btn}

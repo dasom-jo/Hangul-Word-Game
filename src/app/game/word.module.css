@@ -6,6 +6,7 @@
   max-width: 70%;
   height: 100vh;
   transform: translateX(-50%);
+  overflow: hidden; 
 }
 
 .wordContainer {
@@ -24,19 +25,18 @@
   align-items: center;
   justify-content: center;
 }
-.inputDiv{
-    z-index: 100;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
+.inputDiv {
+  z-index: 100;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
-.inputText{
+.inputText {
   z-index: 100;
   width: 300px;
   font-size: 18px;
@@ -45,7 +45,7 @@
   text-align: center;
   border-radius: 10px;
 }
-.inputBtn{
+.inputBtn {
   margin-bottom: 50px;
   margin-left: 20px;
   padding: 10px;
