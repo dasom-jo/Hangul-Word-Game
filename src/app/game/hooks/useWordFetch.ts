@@ -29,7 +29,7 @@ export default function useWordFetch() {
       if (!res.ok) throw new Error(`API 오류: ${res.status}`);
 
       const data = await res.json();
-      console.log("📢 API 응답 데이터:", data);
+      console.log("API 응답 데이터:", data);
 
       if (!data.word) throw new Error("데이터에 word 키가 없습니다.");
 
@@ -38,7 +38,7 @@ export default function useWordFetch() {
         const cleanedData = data.word.replace(/^```json\n|```$/g, "");
         parsedWords = JSON.parse(cleanedData);
       } catch (error) {
-        console.error("❌ JSON 파싱 오류:", error);
+        console.error("JSON 파싱 오류:", error);
         parsedWords = defaultWords;
       }
 
@@ -54,11 +54,10 @@ export default function useWordFetch() {
         speed: Math.random() * 0.5 + 0.3,
       }));
 
-      console.log("📢 영어 단어 목록:", newWords.map((word) => word.english));
 
       setWords((prevWords) => [...prevWords, ...newWords]); // 기존 단어에 추가
     } catch (error) {
-      console.error("❌ 단어 불러오기 실패:", error);
+      console.error("단어 불러오기 실패:", error);
 
       setWords((prevWords) => [
         ...prevWords,

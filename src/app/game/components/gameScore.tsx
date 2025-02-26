@@ -1,9 +1,10 @@
 "use client";
 import useWordGame from "../hooks/useWordGame";
 import styles from "../score.module.css";
+
 const GameScore = () => {
-  const { words, removedWords } = useWordGame(); // wordsRef 사용
-    console.log("removedWords",removedWords);
+  const { words, removedWords } = useWordGame();
+
   return (
     <div className={styles.scoreDiv}>
       <div className={styles.scoreText}>

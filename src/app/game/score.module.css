@@ -12,6 +12,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 .scoreText{
     color: #000000;
