@@ -10,7 +10,14 @@ const TimerBar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.grayBar}>
-        <div className={styles.buleBar} style={{ width: `${progress}%` }} />
+        <div
+          className={styles.buleBar}
+          style={{
+            width: `${progress}%`,
+            backgroundColor:
+              progress > 66 ? "red" : progress > 33 ? "yellow" : "green",
+          }}
+        />
       </div>
       <div>
         {completed && (
@@ -18,7 +25,7 @@ const TimerBar = () => {
             <button className={styles.btn} onClick={resetTimer}>
               다시하기
             </button>
-            <GameScore/>
+            <GameScore removedWords={[]} totalWordCount={0} />
           </>
         )}
       </div>
