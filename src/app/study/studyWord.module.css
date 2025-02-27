@@ -34,7 +34,6 @@
     background-image: url("/speaker_red.png"); /* 빨간색 아이콘 */
 }
 
-
 .liItem {
   display: flex;
   align-items: center; /* 가로 중앙 정렬 */
@@ -58,11 +57,11 @@
     margin-right: 20px;
     width: 15px;
     height: 15px;
-    background-image: url("/speaker.png");
+    background-image: url("/s-speaker.png");
     cursor: pointer;
     transition: background-color 0.3s ease; /* 부드러운 색상 변경 */
   }
   .speaker.playing {
-    background-image: url("/speaker_red.png"); /* 빨간색 아이콘 */
+    background-image: url("/s-speaker_red.png"); /* 빨간색 아이콘 */
 }
 }
