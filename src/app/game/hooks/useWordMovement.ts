@@ -1,13 +1,17 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Word } from "./useWordGame"; // Word 타입 가져오기
-//화면 밖으로 사라지는 단어
+
 export default function useWordMovement(
   setWords: React.Dispatch<React.SetStateAction<Word[]>>
 ) {
   const [removedWords, setRemovedWords] = useState<Word[]>([]); // 제거된 단어 상태
+  const [correctWords, setCorrectWords] = useState<Word[]>([]); // 맞춘 단어 상태
+  const [totalWordCount, setTotalWordCount] = useState<number>(0); // 전체 단어 수 상태
+
   const animationFrameRef = useRef<number | null>(null);
-  const removedWordsRef = useRef<Word[]>([]); // 최신 제거된 단어들 저장
+  const removedWordsRef = useRef<Word[]>([]); // 제거된 단어 저장
+  const correctWordsRef = useRef<Word[]>([]); // 맞춘 단어 저장
 
   useEffect(() => {
     const updateWords = () => {
@@ -16,17 +20,16 @@ export default function useWordMovement(
           ...word,
           y: word.y + word.speed,
         }));
-
+        //단어 화면안에 있음
         const remainingWords = updatedWords.filter(
           (word) => word.y < window.innerHeight + 50
         );
-
+        //단어 화면 밖에 있음
         const newRemovedWords = updatedWords.filter(
           (word) => word.y >= window.innerHeight + 50
         );
-
+        //제거된 단어 중복 방지
         if (newRemovedWords.length > 0) {
-          // 기존 제거된 단어 목록에 없는 새로운 단어만 추가 (ai 중복 단어 생성됨...)
           const uniqueRemovedWords = newRemovedWords.filter(
             (word) =>
               !removedWordsRef.current.some(
@@ -39,11 +42,11 @@ export default function useWordMovement(
               ...removedWordsRef.current,
               ...uniqueRemovedWords,
             ];
-
-            // 상태 업데이트하여 UI에서도 반영 가능하도록
             setRemovedWords([...removedWordsRef.current]);
 
-            //console.log("총 제거된 단어 목록:", removedWordsRef.current);
+            // 전체 단어 수 업데이트 (제거된 단어 + 맞춘 단어)
+            setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
+
             // 서버에 제거된 단어 저장 요청
             saveFailedWordsToServer(uniqueRemovedWords);
           }
@@ -62,7 +65,18 @@ export default function useWordMovement(
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [setWords]);
+  }, [correctWords, removedWords, setWords, totalWordCount]);
+
+  // 맞춘 단어 추가 함수
+  const addCorrectWord = (word: Word) => {
+    if (!correctWordsRef.current.some((w) => w.korean === word.korean)) {
+      correctWordsRef.current = [...correctWordsRef.current, word];
+      setCorrectWords([...correctWordsRef.current]);
+
+      // 전체 단어 수 업데이트 (제거된 단어 + 맞춘 단어)
+      setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
+    }
+  };
 
   // 제거된 단어를 서버로 전송하는 함수
   const saveFailedWordsToServer = async (words: Word[]) => {
@@ -83,5 +97,5 @@ export default function useWordMovement(
     }
   };
 
-  return { removedWords }; // UI에서도 제거된 단어 목록을 활용 가능
+  return { removedWords, correctWords, totalWordCount, addCorrectWord };
 }

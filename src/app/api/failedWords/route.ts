@@ -1,5 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { query } from "@/app/api/db"; // MySQL 연결
+import { RowDataPacket } from "mysql2";
+
+interface faileWords extends RowDataPacket {
+  kr: string;
+  en: string;
+}
+
+export async function GET() {
+    try {
+      const words = await query<faileWords[]>("SELECT kr,en FROM falsehangul");
+      console.log("Fetched users:",words); // 데이터 확인
+      return NextResponse.json(words);
+    } catch (error) {
+      console.error("DB 요청 실패:", error);
+      return NextResponse.json({ error: "DB 요청 실패" }, { status: 500 });
+    }
+  }
 
 export async function POST(req: NextRequest) {
   try {
