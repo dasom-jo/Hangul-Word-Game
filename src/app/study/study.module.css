@@ -1,0 +1,88 @@
+/* 공통 스타일 */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    width: 100%;
+    min-height: 100svh; /* Safari 대응 */
+}
+
+/* 모바일 (최대 425px) */
+@media (max-width: 425px) {
+    .bong1, .bong2 {
+      position: absolute;
+      width: 300px;
+      height: 32px;
+      background-size: cover;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .bong1 {
+      top: 50%;
+      transform: translate(-50%, -600%);
+      background-image: url("/L-bong.png");
+    }
+
+    .page {
+      position: relative;
+      width: 290px;
+      height: 370px;
+      background-image: url("/L-page.png");
+      background-size: cover;
+      z-index: 2;
+      margin-top: 30px;
+    }
+
+    .bong2 {
+      bottom: 50%;
+      transform: translate(-52%, 700%);
+      background-image: url("/L-bong.png");
+    }
+}
+
+/* 태블릿 & 데스크탑 (426px 이상) */
+@media (min-width: 426px) {
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bong1, .bong2 {
+      position: absolute;
+      width: 600px;
+      height: 62px;
+      background-size: cover;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .bong1 {
+      top: 50%;
+      transform: translate(-50%, -600%);
+      background-image: url("/XL-bong.png");
+    }
+
+    .page {
+      position: relative;
+      width: 550px;
+      height: 680px;
+      background-image: url("/XL-page.png");
+      background-size: cover;
+      z-index: 2;
+      margin-top: 50px;
+    }
+
+    .bong2 {
+      bottom: 50%;
+      transform: translate(-50%, 600%);
+      background-image: url("/XL-bong.png");
+    }
+}

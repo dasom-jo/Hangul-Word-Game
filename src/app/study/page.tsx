@@ -1,7 +1,11 @@
+import Base from "./components/base";
+
 const Study = () => {
-    return ( <div>
-스터디 페이지
-    </div> );
-}
+  return (
+    <div>
+      <Base />
+    </div>
+  );
+};
 
 export default Study;
