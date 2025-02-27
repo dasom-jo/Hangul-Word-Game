@@ -1,0 +1,35 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    width: 100%;
+  }
+
+  .lists {
+      width: 60%;
+      margin: 10px;
+      font-size: 200%;
+      height: 600px;
+      overflow: scroll;
+      overflow-x: hidden;
+
+      /* 스크롤바 커스텀 */
+      scrollbar-color: #a76060 #f1f1f1;
+      scrollbar-width:thin;
+  }
+  /* 스피커 아이콘 적용 */
+  .speaker {
+      margin-right: 20px;
+      width: 24px;
+      height: 24px;
+      background-image: url("/speaker.png");
+      background-size: cover;
+  }
+
+  /* 리스트 아이템 스타일 */
+  .liItem {
+      display: flex;
+      align-items: center; /* 가로 중앙 정렬 */
+  }
