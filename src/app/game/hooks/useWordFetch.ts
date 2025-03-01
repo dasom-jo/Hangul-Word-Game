@@ -1,4 +1,3 @@
-// api에서 단어를 가져오는 로직
 "use client";
 import { useState, useCallback } from "react";
 import { Word } from "./useWordGame"; // Word 타입 가져오기
@@ -24,6 +23,8 @@ export default function useWordFetch() {
     if (isFetching) return;
     setIsFetching(true);
 
+    let parsedWords: [string, string][] = [];
+
     try {
       const res = await fetch("/api/word", { cache: "no-store" });
       if (!res.ok) throw new Error(`API 오류: ${res.status}`);
@@ -33,7 +34,6 @@ export default function useWordFetch() {
 
       if (!data.word) throw new Error("데이터에 word 키가 없습니다.");
 
-      let parsedWords;
       try {
         const cleanedData = data.word.replace(/^```json\n|```$/g, "");
         parsedWords = JSON.parse(cleanedData);
@@ -46,32 +46,63 @@ export default function useWordFetch() {
         parsedWords = defaultWords;
       }
 
-      const newWords = parsedWords.map(([korean, english]: [string, string]) => ({
-        korean,
-        english,
-        x: Math.random() * (window.innerWidth - 350),
-        y: -50,
-        speed: Math.random() * 0.5 + 0.3,
-      }));
+      // 단어 추가 (API 데이터 사용)
+      setWords((prevWords) => {
+        const newWords = [];
+        const minDistance = 80; // 단어 간 최소 거리 설정 (px)
+        const maxAttempts = 50; // 무한 루프 방지 (최대 시도 횟수)
 
+        for (const [korean, english] of parsedWords) {
+          let x: number, y: number, isOverlapping;
+          let attempts = 0;
 
-      setWords((prevWords) => [...prevWords, ...newWords]); // 기존 단어에 추가
+          do {
+            x = Math.random() * (window.innerWidth - 150);
+            y = Math.random() * (window.innerHeight - 150);
+            isOverlapping = prevWords.some(
+              (word) => Math.abs(word.x - x) < minDistance && Math.abs(word.y - y) < minDistance
+            );
+            attempts++;
+          } while (isOverlapping && attempts < maxAttempts);
+
+          newWords.push({ korean, english, x, y: -50, speed: Math.random() * 0.5 + 0.3 });
+        }
+
+        return [...prevWords, ...newWords];
+      });
+
     } catch (error) {
       console.error("단어 불러오기 실패:", error);
 
-      setWords((prevWords) => [
-        ...prevWords,
-        ...defaultWords.map(([korean, english]) => ({
-          korean,
-          english,
-          x: Math.random() * (window.innerWidth - 100),
-          y: -50,
-          speed: Math.random() * 0.5 + 0.3,
-        })),
-      ]);
-    } finally {
-      setIsFetching(false);
+      // API 요청 실패 시 기본 단어 추가
+      setWords((prevWords) => {
+        const newWords = [];
+        const minDistance = 80; // 단어 간 최소 거리 설정 (px)
+        const maxAttempts = 50; // 무한 루프 방지 (최대 시도 횟수)
+
+        for (const [korean, english] of defaultWords) {
+          let x: number, y: number, isOverlapping;
+          let attempts = 0;
+
+          do {
+            x = Math.random() * (window.innerWidth - 150);
+            y = Math.random() * (window.innerHeight - 150);
+            isOverlapping = prevWords.some(
+              (word) => Math.abs(word.x - x) < minDistance && Math.abs(word.y - y) < minDistance
+            );
+            attempts++;
+          } while (isOverlapping && attempts < maxAttempts);
+
+          newWords.push({ korean, english, x, y, speed: Math.random() * 0.5 + 0.3 });
+        }
+
+        return [...prevWords, ...newWords];
+      });
+
+      return; // catch 실행 후 `finally`를 실행하지 않도록 방지
     }
+
+    setIsFetching(false); // finally에서 실행되지 않도록 수정
   }, [isFetching]);
 
   return { fetchNewWords };
