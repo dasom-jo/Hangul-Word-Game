@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -30,6 +30,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               ],
             },
           ],
+          generationConfig: { // generationConfig 추가
+            maxOutputTokens: 2048, // 최대 출력 토큰 수 설정 (필요에 따라 조정)
+            temperature: 0.8, // temperature 설정 (필요에 따라 조정)
+        },
         }),
       }
     );

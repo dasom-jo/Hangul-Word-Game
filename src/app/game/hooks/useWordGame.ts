@@ -32,7 +32,7 @@ export default function useWordGame() {
 
     const intervalId = setInterval(() => {
       fetchNewWords(setWords);
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [isRunning, completed, fetchNewWords]);

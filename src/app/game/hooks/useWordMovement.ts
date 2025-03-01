@@ -90,8 +90,6 @@ export default function useWordMovement(
       if (!response.ok) {
         throw new Error(`서버 요청 실패: ${response.status}`);
       }
-
-      console.log("제거된 단어 서버 저장 완료");
     } catch (error) {
       console.error("제거된 단어 저장 실패:", error);
     }
