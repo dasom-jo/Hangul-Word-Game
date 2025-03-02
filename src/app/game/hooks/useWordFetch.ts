@@ -17,10 +17,10 @@ const defaultWords: [string, string][] = [
 ];
 
 export default function useWordFetch() {
-  const [isFetching, setIsFetching] = useState(false); // API 중복 호출 방지
+  const [isFetching, setIsFetching] = useState(false); // ✅ 상태 변수
 
   const fetchNewWords = useCallback(async (setWords: React.Dispatch<React.SetStateAction<Word[]>>) => {
-    if (isFetching) return;
+    if (isFetching) return; // ✅ 중복 요청 방지
     setIsFetching(true);
 
     let parsedWords: [string, string][] = [];
@@ -45,8 +45,11 @@ export default function useWordFetch() {
       if (!Array.isArray(parsedWords) || parsedWords.length === 0) {
         parsedWords = defaultWords;
       }
-
-      // 단어 추가 (API 데이터 사용)
+    } catch (error) {
+      console.error("단어 불러오기 실패:", error);
+      parsedWords = defaultWords; // API 실패 시 기본 단어 사용
+    } finally {
+      // ✅ 항상 실행되는 finally 블록
       setWords((prevWords) => {
         const newWords = [];
         const minDistance = 80; // 단어 간 최소 거리 설정 (px)
@@ -71,39 +74,9 @@ export default function useWordFetch() {
         return [...prevWords, ...newWords];
       });
 
-    } catch (error) {
-      console.error("단어 불러오기 실패:", error);
-
-      // API 요청 실패 시 기본 단어 추가
-      setWords((prevWords) => {
-        const newWords = [];
-        const minDistance = 80; // 단어 간 최소 거리 설정 (px)
-        const maxAttempts = 50; // 무한 루프 방지 (최대 시도 횟수)
-
-        for (const [korean, english] of defaultWords) {
-          let x: number, y: number, isOverlapping;
-          let attempts = 0;
-
-          do {
-            x = Math.random() * (window.innerWidth - 150);
-            y = Math.random() * (window.innerHeight - 150);
-            isOverlapping = prevWords.some(
-              (word) => Math.abs(word.x - x) < minDistance && Math.abs(word.y - y) < minDistance
-            );
-            attempts++;
-          } while (isOverlapping && attempts < maxAttempts);
-
-          newWords.push({ korean, english, x, y, speed: Math.random() * 0.5 + 0.3 });
-        }
-
-        return [...prevWords, ...newWords];
-      });
-
-      return; // catch 실행 후 `finally`를 실행하지 않도록 방지
+      setIsFetching(false); // 반드시 실행되도록 finally에서 처리
     }
-
-    setIsFetching(false); // finally에서 실행되지 않도록 수정
-  }, [isFetching]);
+  }, [isFetching]); // `isFetching` 제거 (최신 상태 반영 가능하도록)
 
   return { fetchNewWords };
 }
