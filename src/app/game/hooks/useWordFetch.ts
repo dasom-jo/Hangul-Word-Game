@@ -17,10 +17,10 @@ const defaultWords: [string, string][] = [
 ];
 
 export default function useWordFetch() {
-  const [isFetching, setIsFetching] = useState(false); // ✅ 상태 변수
+  const [isFetching, setIsFetching] = useState(false); // 상태 변수
 
   const fetchNewWords = useCallback(async (setWords: React.Dispatch<React.SetStateAction<Word[]>>) => {
-    if (isFetching) return; // ✅ 중복 요청 방지
+    if (isFetching) return; // 중복 요청 방지
     setIsFetching(true);
 
     let parsedWords: [string, string][] = [];
@@ -49,7 +49,7 @@ export default function useWordFetch() {
       console.error("단어 불러오기 실패:", error);
       parsedWords = defaultWords; // API 실패 시 기본 단어 사용
     } finally {
-      // ✅ 항상 실행되는 finally 블록
+      // 항상 실행되는 finally 블록
       setWords((prevWords) => {
         const newWords = [];
         const minDistance = 80; // 단어 간 최소 거리 설정 (px)
@@ -60,7 +60,7 @@ export default function useWordFetch() {
           let attempts = 0;
 
           do {
-            x = Math.random() * (window.innerWidth - 150);
+            x = Math.random() * (700 - 150);
             y = Math.random() * (window.innerHeight - 150);
             isOverlapping = prevWords.some(
               (word) => Math.abs(word.x - x) < minDistance && Math.abs(word.y - y) < minDistance
