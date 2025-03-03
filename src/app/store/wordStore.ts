@@ -4,6 +4,7 @@ import { fetchFailedWords } from "@/services/wordService";
 interface Word {
     kr: string;
     en:string
+    kakaoid:string
 }
 
 interface WordStore {

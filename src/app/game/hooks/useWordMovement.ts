@@ -14,7 +14,7 @@ export default function useWordMovement(
   const correctWordsRef = useRef<Word[]>([]);
   const { data: session } = useSession();
   const kakaoid = session?.user?.name || null;
-  console.log("kakaoid----------------------",kakaoid);
+
   useEffect(() => {
     const updateWords = () => {
       setWords((prevWords) => {
