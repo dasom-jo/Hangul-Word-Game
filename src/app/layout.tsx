@@ -1,25 +1,18 @@
+"use client";
 import Background from "./components/background";
 import "./globals.css";
 import ClientProvider from "./providers/ClientProvider";
+import { WordProvider } from "./contexts/wordContext"; // 추가
 
-export const metadata = {
-  title: "한글 낱말 게임",
-  description: "한글 낱말 게임을 즐겨보세요!",
-};
-
-export { viewport } from "./viewport"; // viewport 설정 가져오기
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayoutClient({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
       <body>
         <ClientProvider>
-          <Background />
-          {children}
+          <WordProvider>
+            <Background />
+            {children}
+          </WordProvider>
         </ClientProvider>
       </body>
     </html>

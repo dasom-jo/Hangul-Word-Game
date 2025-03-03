@@ -5,7 +5,7 @@ import GameScore from "./gameScore";
 
 const TimerBar = () => {
   const { progress, isRunning, startTimer, resetTimer, completed } =
-    useTimer(5);
+    useTimer(15);
 
   return (
     <div className={styles.container}>

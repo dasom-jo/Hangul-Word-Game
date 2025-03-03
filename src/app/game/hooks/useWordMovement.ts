@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Word } from "./useWordGame";
 import { useSession } from "next-auth/react";
+import useTimer from "./useTimer";
 
 export default function useWordMovement(
   setWords: React.Dispatch<React.SetStateAction<Word[]>>
 ) {
   const [removedWords, setRemovedWords] = useState<Word[]>([]);
-  const [correctWords, setCorrectWords] = useState<Word[]>([]);
+  //const [correctWords, setCorrectWords] = useState<Word[]>([]);
   const [totalWordCount, setTotalWordCount] = useState<number>(0);
 
   const animationFrameRef = useRef<number | null>(null);
@@ -14,7 +15,7 @@ export default function useWordMovement(
   const correctWordsRef = useRef<Word[]>([]);
   const { data: session } = useSession();
   const kakaoid = session?.user?.name || null;
-
+  const { isRunning } = useTimer();
   useEffect(() => {
     const updateWords = () => {
       setWords((prevWords) => {
@@ -49,7 +50,7 @@ export default function useWordMovement(
             setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
 
             // 로그인된 경우에만 서버로 데이터 전송
-            if (kakaoid) {
+            if (kakaoid && isRunning === true) {
               saveFailedWordsToServer(uniqueRemovedWords, kakaoid);
             }
           }
@@ -68,16 +69,16 @@ export default function useWordMovement(
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [correctWords, removedWords, setWords, totalWordCount, kakaoid]); // kakaoid도 의존성에 추가
+  }, [removedWords, setWords, totalWordCount, kakaoid, isRunning]); // kakaoid도 의존성에 추가
 
-  const addCorrectWord = (word: Word) => {
-    if (!correctWordsRef.current.some((w) => w.korean === word.korean)) {
-      correctWordsRef.current = [...correctWordsRef.current, word];
-      setCorrectWords([...correctWordsRef.current]);
-
-      setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
-    }
-  };
+  // const addCorrectWord = (word: Word) => {
+  //   if (!correctWordsRef.current.some((w) => w.korean === word.korean)) {
+  //     correctWordsRef.current = [...correctWordsRef.current, word];
+  //     setCorrectWords([...correctWordsRef.current]);
+  //     console.log("correctWords----------------------",correctWords);
+  //     setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
+  //   }
+  // };
 
   const saveFailedWordsToServer = async (words: Word[], kakaoid: string) => {
     if (!kakaoid) {
@@ -103,5 +104,5 @@ export default function useWordMovement(
   };
 
 
-  return { removedWords, correctWords, totalWordCount, addCorrectWord };
+  return { removedWords, totalWordCount };
 }
