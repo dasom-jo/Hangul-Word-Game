@@ -1,18 +1,20 @@
-"use client";
 import { useEffect, useRef, useState } from "react";
-import { Word } from "./useWordGame"; // Word 타입 가져오기
+import { Word } from "./useWordGame";
+import { useSession } from "next-auth/react";
 
 export default function useWordMovement(
   setWords: React.Dispatch<React.SetStateAction<Word[]>>
 ) {
-  const [removedWords, setRemovedWords] = useState<Word[]>([]); // 제거된 단어 상태
-  const [correctWords, setCorrectWords] = useState<Word[]>([]); // 맞춘 단어 상태
-  const [totalWordCount, setTotalWordCount] = useState<number>(0); // 전체 단어 수 상태
+  const [removedWords, setRemovedWords] = useState<Word[]>([]);
+  const [correctWords, setCorrectWords] = useState<Word[]>([]);
+  const [totalWordCount, setTotalWordCount] = useState<number>(0);
 
   const animationFrameRef = useRef<number | null>(null);
-  const removedWordsRef = useRef<Word[]>([]); // 제거된 단어 저장
-  const correctWordsRef = useRef<Word[]>([]); // 맞춘 단어 저장
-
+  const removedWordsRef = useRef<Word[]>([]);
+  const correctWordsRef = useRef<Word[]>([]);
+  const { data: session } = useSession();
+  const kakaoid = session?.user?.name || null;
+  console.log("kakaoid----------------------",kakaoid);
   useEffect(() => {
     const updateWords = () => {
       setWords((prevWords) => {
@@ -20,15 +22,15 @@ export default function useWordMovement(
           ...word,
           y: word.y + word.speed,
         }));
-        //단어 화면안에 있음
+
         const remainingWords = updatedWords.filter(
           (word) => word.y < window.innerHeight + 50
         );
-        //단어 화면 밖에 있음
+
         const newRemovedWords = updatedWords.filter(
           (word) => word.y >= window.innerHeight + 50
         );
-        //제거된 단어 중복 방지
+
         if (newRemovedWords.length > 0) {
           const uniqueRemovedWords = newRemovedWords.filter(
             (word) =>
@@ -44,11 +46,12 @@ export default function useWordMovement(
             ];
             setRemovedWords([...removedWordsRef.current]);
 
-            // 전체 단어 수 업데이트 (제거된 단어 + 맞춘 단어)
             setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
 
-            // 서버에 제거된 단어 저장 요청
-            saveFailedWordsToServer(uniqueRemovedWords);
+            // 로그인된 경우에만 서버로 데이터 전송
+            if (kakaoid) {
+              saveFailedWordsToServer(uniqueRemovedWords, kakaoid);
+            }
           }
         }
 
@@ -65,35 +68,40 @@ export default function useWordMovement(
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [correctWords, removedWords, setWords, totalWordCount]);
+  }, [correctWords, removedWords, setWords, totalWordCount, kakaoid]); // kakaoid도 의존성에 추가
 
-  // 맞춘 단어 추가 함수
   const addCorrectWord = (word: Word) => {
     if (!correctWordsRef.current.some((w) => w.korean === word.korean)) {
       correctWordsRef.current = [...correctWordsRef.current, word];
       setCorrectWords([...correctWordsRef.current]);
 
-      // 전체 단어 수 업데이트 (제거된 단어 + 맞춘 단어)
       setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
     }
   };
 
-  // 제거된 단어를 서버로 전송하는 함수
-  const saveFailedWordsToServer = async (words: Word[]) => {
+  const saveFailedWordsToServer = async (words: Word[], kakaoid: string) => {
+    if (!kakaoid) {
+      console.error("❌ 유효하지 않은 kakaoid 값:", kakaoid);
+      return;
+    }
+
     try {
+      console.log("🔍 서버로 보낼 데이터:", { words, kakaoid }); // ✅ 전송 데이터 확인
+
       const response = await fetch("/api/failedWords", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ words }),
+        body: JSON.stringify({ words, kakaoid }),
       });
 
       if (!response.ok) {
         throw new Error(`서버 요청 실패: ${response.status}`);
       }
     } catch (error) {
-      console.error("제거된 단어 저장 실패:", error);
+      console.error("❌ 제거된 단어 저장 실패:", error);
     }
   };
+
 
   return { removedWords, correctWords, totalWordCount, addCorrectWord };
 }

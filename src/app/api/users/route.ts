@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 interface User extends RowDataPacket {
   kakaoid: string;
 }
-
+//로그인 시 유저있으면 로그인 없으면 데이터에 아이디 저장 및 로그인
 export async function GET() {
     try {
       const users = await query<User[]>("SELECT kakaoid FROM user");

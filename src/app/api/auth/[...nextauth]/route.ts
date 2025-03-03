@@ -9,14 +9,22 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, account }) {
-      if (account) {
-        token.accessToken = account.access_token as string; // 🔥 타입 변환 추가
+    async jwt({ token, account, profile }) {
+      console.log("🔍 Profile Data:", profile); // profile 데이터 확인
+
+      if (account && profile) {
+        token.kakaoid =
+          profile.properties?.nickname || // properties에서 닉네임 가져오기
+          profile.kakao_account?.profile?.nickname || // kakao_account에서 닉네임 가져오기
+          "unknown"; // 닉네임이 없으면 unknown 설정
+
+        token.accessToken = account.access_token;
       }
       return token;
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken as string; // 🔥 타입 변환 추가
+      session.accessToken = token.accessToken as string;
+      session.user.name = token.kakaoid as string; // 닉네임을 name으로 설정
       return session;
     },
   },
