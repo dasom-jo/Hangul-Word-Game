@@ -1,12 +1,13 @@
+import MainBtn from "../components/mainBtn";
 import AiWord from "./components/WordGame";
 import TimerBar from "./components/timerBar";
-
 
 const Game = () => {
   return (
     <div>
-      <TimerBar/>
-      <AiWord/>
+      <MainBtn />
+      <TimerBar />
+      <AiWord />
     </div>
   );
 };

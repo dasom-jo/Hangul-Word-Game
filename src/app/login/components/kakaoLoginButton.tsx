@@ -1,9 +1,10 @@
 "use client";
 import { useEffect } from "react";
-import { signIn,signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import styles from "../kakaoLoginButton.module.css";
 import Select from "../../select/page";
 import { useUserDB } from "../hooks/useUserDB";
+import MainBtn from "../../components/mainBtn";
 
 const KakaoLoginButton = () => {
   const { data: session } = useSession();
@@ -20,9 +21,7 @@ const KakaoLoginButton = () => {
     <div>
       {session ? (
         <div>
-          <button className={styles.signOutBtn} onClick={() => signOut()}>
-            로그아웃
-          </button>
+          <MainBtn/>
           <Select />
         </div>
       ) : (

@@ -24,9 +24,9 @@
 .btn {
   color: #ff0404;
   z-index: 10;
-  width: 500px; /* 단위 추가 */
+  width: 500px;
   height: 50px;
-  font-size: 7em;
+  font-size: 5em;
   font-weight: 600;
   position: fixed; /* 화면 전체 기준 중앙 정렬 */
   top: 40%;
@@ -36,7 +36,6 @@
   /* 애니메이션 적용 */
   animation: heartbeat 1.2s infinite ease-in-out;
 }
-
 /* 두근두근 애니메이션 */
 @keyframes heartbeat {
   0% {
