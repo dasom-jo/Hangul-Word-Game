@@ -2,7 +2,6 @@
 import styles from "../timer.module.css";
 import useTimer from "../hooks/useTimer";
 import GameScore from "./gameScore";
-import { Word } from "../hooks/useWordGame";
 
 const TimerBar = () => {
   const { progress, isRunning, startTimer, resetTimer, completed } =
@@ -26,7 +25,7 @@ const TimerBar = () => {
             <button className={styles.btn} onClick={resetTimer}>
               다시하기
             </button>
-            <GameScore removedWords={[] as Word[]} totalWordCount={0} />
+            <GameScore removedWords={0} totalWordCount={0} />
           </>
         )}
       </div>

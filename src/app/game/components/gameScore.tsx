@@ -1,8 +1,11 @@
 "use client";
 import styles from "../score.module.css";
 import { useWordContext } from "../../contexts/wordContext"; // ✅ Context 사용
-
-const GameScore: React.FC = () => {
+interface GameScoreProps {
+  removedWords: number;
+  totalWordCount: number;
+}
+const GameScore: React.FC<GameScoreProps> = () => {
   const { matchedWords, removedWords } = useWordContext();
 
   return (
