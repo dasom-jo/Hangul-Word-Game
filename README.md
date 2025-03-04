@@ -1,5 +1,5 @@
 
-<img src="C:\Users\jody0\Hangul-Word-Game\public\background.png" width="600" height="400" style="object-fit: cover;" />
+<img src="C:\Users\jody0\Downloads\background.png" width="600" height="400" style="object-fit: cover;" />
 
 
 ## 1. 프로젝트 목표
@@ -127,6 +127,6 @@ AI 기술 접목을 처음해봐 어려움이 있었지만 오히려 MEXT.JS의 
 AI API는 무료 버전을 사용해 할당량에 자주 도달하여 ERROR 가 떳지만 오히려 그런 에러를 막기위한 또 다른 조건을 추가하여
 좀더 여러 에러에 대처하는 방법을 배웠습니다.
 
-# 시현 영상( 중간 에러는 AI 무료 버전으로 할당량을 전부 채워 요청이 거부된 상태입니다.
-# 그래서 기본 데이터를 출력하였습니다. )
+# 시현 영상
+( 중간 에러는 AI 무료 버전으로 할당량을 전부 채워 요청이 거부된 상태입니다.그래서 기본 데이터를 출력하였습니다. )
 "C:\Users\jody0\Videos\화면 녹화\화면 녹화 중 2025-03-04 211214.mp4"
