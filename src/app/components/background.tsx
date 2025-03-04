@@ -16,7 +16,7 @@ export default function Background() {
         <div className={styles.centerContent}></div>
       ) : (
         <div className={styles.centerContent2}></div>
-      )}
+      )}{" "}
     </div>
   );
 }
