@@ -1,21 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Word } from "./useWordGame";
 import { useSession } from "next-auth/react";
 import useTimer from "./useTimer";
+import { useWordContext } from "../../contexts/wordContext"; // ✅ Context 가져오기
 
 export default function useWordMovement(
   setWords: React.Dispatch<React.SetStateAction<Word[]>>
 ) {
-  const [removedWords, setRemovedWords] = useState<Word[]>([]);
-  //const [correctWords, setCorrectWords] = useState<Word[]>([]);
-  const [totalWordCount, setTotalWordCount] = useState<number>(0);
-
   const animationFrameRef = useRef<number | null>(null);
   const removedWordsRef = useRef<Word[]>([]);
-  const correctWordsRef = useRef<Word[]>([]);
   const { data: session } = useSession();
   const kakaoid = session?.user?.name || null;
   const { isRunning } = useTimer();
+  const { addRemovedWords } = useWordContext(); // ✅ 전역 상태 사용
+
   useEffect(() => {
     const updateWords = () => {
       setWords((prevWords) => {
@@ -41,16 +39,13 @@ export default function useWordMovement(
           );
 
           if (uniqueRemovedWords.length > 0) {
-            removedWordsRef.current = [
-              ...removedWordsRef.current,
-              ...uniqueRemovedWords,
-            ];
-            setRemovedWords([...removedWordsRef.current]);
+            removedWordsRef.current = [...removedWordsRef.current, ...uniqueRemovedWords];
 
-            setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
+            // 틀린 단어 전역 상태 업데이트
+            addRemovedWords(uniqueRemovedWords);
 
             // 로그인된 경우에만 서버로 데이터 전송
-            if (kakaoid && isRunning === true) {
+            if (kakaoid && isRunning) {
               saveFailedWordsToServer(uniqueRemovedWords, kakaoid);
             }
           }
@@ -69,16 +64,7 @@ export default function useWordMovement(
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [removedWords, setWords, totalWordCount, kakaoid, isRunning]); // kakaoid도 의존성에 추가
-
-  // const addCorrectWord = (word: Word) => {
-  //   if (!correctWordsRef.current.some((w) => w.korean === word.korean)) {
-  //     correctWordsRef.current = [...correctWordsRef.current, word];
-  //     setCorrectWords([...correctWordsRef.current]);
-  //     console.log("correctWords----------------------",correctWords);
-  //     setTotalWordCount(removedWordsRef.current.length + correctWordsRef.current.length);
-  //   }
-  // };
+  }, [setWords, kakaoid, isRunning, addRemovedWords]); // 의존성 배열 수정
 
   const saveFailedWordsToServer = async (words: Word[], kakaoid: string) => {
     if (!kakaoid) {
@@ -87,7 +73,7 @@ export default function useWordMovement(
     }
 
     try {
-      console.log("🔍 서버로 보낼 데이터:", { words, kakaoid }); // ✅ 전송 데이터 확인
+      console.log("🔍 서버로 보낼 데이터:", { words, kakaoid });
 
       const response = await fetch("/api/failedWords", {
         method: "POST",
@@ -103,6 +89,6 @@ export default function useWordMovement(
     }
   };
 
-
-  return { removedWords, totalWordCount };
+  // removedWords 반환 추가
+  return { removedWords: removedWordsRef.current };
 }
