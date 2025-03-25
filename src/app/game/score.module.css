@@ -1,23 +1,23 @@
-.scoreDiv{
-    z-index: 1000;
-    background-color: rgba(240, 248, 255, 0.637);
-    border-radius: 20px;
-    z-index: 10;
-    width: 300px;
-    height: 200px;
-    font-size: 2em;
-    font-weight: 600;
-    position: fixed; /* 화면 전체 기준 중앙 정렬 */
-    bottom: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+.scoreDiv {
+  z-index: 1000;
+  background-color: rgba(240, 248, 255, 0.637);
+  border-radius: 20px;
+  z-index: 10;
+  width: 300px;
+  height: 200px;
+  font-size: 2em;
+  font-weight: 600;
+  position: fixed; /* 화면 전체 기준 중앙 정렬 */
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
-.scoreText{
-    color: #000000;
-    align-items: center;
-    justify-content: center;
+.scoreText {
+  color: #000000;
+  align-items: center;
+  justify-content: center;
 }

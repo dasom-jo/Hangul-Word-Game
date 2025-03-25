@@ -4,7 +4,7 @@ import Base from "./components/base";
 const Study = () => {
   return (
     <div>
-                <MainBtn/>
+      <MainBtn />
       <Base />
     </div>
   );

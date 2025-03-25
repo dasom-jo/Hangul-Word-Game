@@ -21,17 +21,17 @@
 }
 /* 스피커 아이콘 적용 */
 .speaker {
-    margin-right: 10px;
-    width: 24px;
-    height: 24px;
-    background-image: url("/speaker.png"); /* 기본 아이콘 */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 부드러운 색상 변경 */
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+  background-image: url("/speaker.png"); /* 기본 아이콘 */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 부드러운 색상 변경 */
 }
 
 /* 음성 재생 중일 때 배경을 빨간색으로 변경 */
 .speaker.playing {
-    background-image: url("/speaker_red.png"); /* 빨간색 아이콘 */
+  background-image: url("/speaker_red.png"); /* 빨간색 아이콘 */
 }
 
 .liItem {
@@ -63,5 +63,5 @@
   }
   .speaker.playing {
     background-image: url("/s-speaker_red.png"); /* 빨간색 아이콘 */
-}
+  }
 }

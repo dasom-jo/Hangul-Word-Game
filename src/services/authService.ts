@@ -9,7 +9,9 @@ interface User extends RowDataPacket {
 // 유저 조회 (DB에 존재하는지 확인)
 export async function getUserByKakaoId(kakaoid: string): Promise<User | null> {
   try {
-    const users = (await query<User[]>("SELECT * FROM user WHERE kakaoid = ?", [kakaoid])) as User[];
+    const users = (await query<User[]>("SELECT * FROM user WHERE kakaoid = ?", [
+      kakaoid,
+    ])) as User[];
     return users.length > 0 ? users[0] : null;
   } catch (error) {
     console.error("유저 조회 실패:", error);

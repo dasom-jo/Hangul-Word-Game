@@ -11,7 +11,10 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-export async function query<T extends RowDataPacket[]>(sql: string, params: unknown[] = []): Promise<T> {
+export async function query<T extends RowDataPacket[]>(
+  sql: string,
+  params: unknown[] = [],
+): Promise<T> {
   try {
     const [rows] = await pool.execute<T>(sql, params);
     return rows;

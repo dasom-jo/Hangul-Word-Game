@@ -43,7 +43,7 @@
   background-size: contain; /* 또는 cover */
   background-repeat: no-repeat;
 }
-.centerContent2{
+.centerContent2 {
   position: relative;
   z-index: 1; /* 비디오 위에 오도록 설정 */
   width: 100vw; /* 원하는 크기로 조정 */

@@ -27,7 +27,9 @@ export function WordProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <WordContext.Provider value={{ matchedWords, addMatchedWord, removedWords, addRemovedWords }}>
+    <WordContext.Provider
+      value={{ matchedWords, addMatchedWord, removedWords, addRemovedWords }}
+    >
       {children}
     </WordContext.Provider>
   );

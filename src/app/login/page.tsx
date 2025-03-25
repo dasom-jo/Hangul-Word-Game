@@ -4,7 +4,7 @@ import KakaoLoginButton from "./components/kakaoLoginButton";
 const Login = () => {
   return (
     <div>
-      <Title/>
+      <Title />
       <KakaoLoginButton />
     </div>
   );

@@ -4,7 +4,11 @@ import "./globals.css";
 import ClientProvider from "./providers/ClientProvider";
 import { WordProvider } from "./contexts/wordContext"; // 추가
 
-export default function RootLayoutClient({ children }: { children: React.ReactNode }) {
+export default function RootLayoutClient({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ko">
       <body>

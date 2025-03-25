@@ -1,10 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
-//구글 gemini ai api 를 이용함
+  //구글 gemini ai api 를 이용함
   try {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -30,18 +33,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               ],
             },
           ],
-          generationConfig: { // generationConfig 추가
+          generationConfig: {
+            // generationConfig 추가
             maxOutputTokens: 2048, // 최대 출력 토큰 수 설정 (필요에 따라 조정)
             temperature: 0.8, // temperature 설정 (필요에 따라 조정)
-        },
+          },
         }),
-      }
+      },
     );
 
     if (!response.ok) {
       const errorData = await response.json();
       console.error("Gemini API 응답 오류:", response.status, errorData);
-      return res.status(response.status).json({ error: "Gemini API 요청 실패" });
+      return res
+        .status(response.status)
+        .json({ error: "Gemini API 요청 실패" });
     }
 
     const data = await response.json();

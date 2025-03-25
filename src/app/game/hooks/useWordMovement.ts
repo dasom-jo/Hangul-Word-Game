@@ -5,7 +5,7 @@ import useTimer from "./useTimer";
 import { useWordContext } from "../../contexts/wordContext"; // ✅ Context 가져오기
 
 export default function useWordMovement(
-  setWords: React.Dispatch<React.SetStateAction<Word[]>>
+  setWords: React.Dispatch<React.SetStateAction<Word[]>>,
 ) {
   const animationFrameRef = useRef<number | null>(null);
   const removedWordsRef = useRef<Word[]>([]);
@@ -23,23 +23,26 @@ export default function useWordMovement(
         }));
 
         const remainingWords = updatedWords.filter(
-          (word) => word.y < window.innerHeight + 50
+          (word) => word.y < window.innerHeight + 50,
         );
 
         const newRemovedWords = updatedWords.filter(
-          (word) => word.y >= window.innerHeight + 50
+          (word) => word.y >= window.innerHeight + 50,
         );
 
         if (newRemovedWords.length > 0) {
           const uniqueRemovedWords = newRemovedWords.filter(
             (word) =>
               !removedWordsRef.current.some(
-                (removed) => removed.korean === word.korean
-              )
+                (removed) => removed.korean === word.korean,
+              ),
           );
 
           if (uniqueRemovedWords.length > 0) {
-            removedWordsRef.current = [...removedWordsRef.current, ...uniqueRemovedWords];
+            removedWordsRef.current = [
+              ...removedWordsRef.current,
+              ...uniqueRemovedWords,
+            ];
 
             // 틀린 단어 전역 상태 업데이트
             addRemovedWords(uniqueRemovedWords);

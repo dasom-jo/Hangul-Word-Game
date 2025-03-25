@@ -21,7 +21,7 @@ const KakaoLoginButton = () => {
     <div>
       {session ? (
         <div>
-          <MainBtn/>
+          <MainBtn />
           <Select />
         </div>
       ) : (

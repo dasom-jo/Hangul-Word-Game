@@ -22,7 +22,9 @@ const MainBtn = () => {
           <button onClick={() => router.push("/")}>홈 | home</button>
           <button onClick={() => router.push("/study")}>단어장 | study</button>
           <button onClick={() => router.push("/game")}>게임 | game</button>
-          <button onClick={() => signOut({ callbackUrl: "/" })}>나가기 | logout</button>
+          <button onClick={() => signOut({ callbackUrl: "/" })}>
+            나가기 | logout
+          </button>
         </div>
       )}
     </div>
