@@ -1,10 +1,12 @@
-<img src="C:\Users\jody0\Hangul-Word-Game\public\background.png" width="600" height="400" style="object-fit: cover;" />
+
+<img src="public/background.png" width="200" height="300" style="object-fit: cover;" />
 
 ## 1. 프로젝트 목표
 
 AI를 통한 새로운 한글 낱말 및 영단어를 학습하고, 틀린 단어를 저장하여 복습할 수 있도록 하여 지속적인 학습 효과 제공.
 
 ## 3. 개발 환경
+<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" /> <img src="https://img.shields.io/badge/React-20232A.svg?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React.js Badge" /> <img src="https://img.shields.io/badge/TypeScript-007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript Badge" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=20232A" alt="JavaScript Badge" /> <img src="https://img.shields.io/badge/CSS-CC6699.svg?style=for-the-badge&logo=sass&logoColor=white" alt="CSS Badge" /> <img src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js Badge" /> <img src="https://img.shields.io/badge/MySQL-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL Badge" /> <img src="https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge" /> <img src="https://img.shields.io/badge/Gemini_AI-E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" />
 
 <img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" /> <img src="https://img.shields.io/badge/React-20232A.svg?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React.js Badge" /> <img src="https://img.shields.io/badge/TypeScript-007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript Badge" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=20232A" alt="JavaScript Badge" /> <img src="https://img.shields.io/badge/CSS-CC6699.svg?style=for-the-badge&logo=sass&logoColor=white" alt="CSS Badge" /> <img src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js Badge" /> <img src="https://img.shields.io/badge/MySQL-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL Badge" /> <img src="https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge" /><img src="https://img.shields.io/badge/Gemini_AI-E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" />
 
@@ -19,7 +21,7 @@ AI를 통한 새로운 한글 낱말 및 영단어를 학습하고, 틀린 단�
 <table>
   <tr>
     <td>로그인 페이지</td>
-    <td><img src="C:\Users\jody0\Pictures\스크린샷\스크린샷 2025-03-04 150947.png" width="500" height="500" style="object-fit: cover;" /></td>
+    <td><img src="public/스크린샷 2025-03-04 150902.png" width="500" height="550" style="object-fit: cover;" /></td>
   </tr>
 </table>
 
@@ -32,7 +34,7 @@ AI를 통한 새로운 한글 낱말 및 영단어를 학습하고, 틀린 단�
 <table>
   <tr>
     <td>선택 페이지</td>
-    <td><img src="C:\Users\jody0\Pictures\스크린샷\스크린샷 2025-03-04 152357.png" width="500" height="700" style="object-fit: cover;" /></td>
+    <td><img src="public/스크린샷 2025-03-04 152435.png" width="500" height="550" style="object-fit: cover;" /></td>
   </tr>
 </table>
 
@@ -47,15 +49,15 @@ AI를 통한 새로운 한글 낱말 및 영단어를 학습하고, 틀린 단�
 <table>
   <tr>
     <td>시작 페이지</td>
-    <td><img src="C:\Users\jody0\Pictures\스크린샷\스크린샷 2025-03-04 154313.png" width="500" height="700" style="object-fit: cover;" /></td>
+    <td><img src="public/스크린샷 2025-03-04 154313.png" width="500" height="550" style="object-fit: cover;" /></td>
   </tr>
     <tr>
     <td>게임 페이지</td>
-    <td><img src="C:\Users\jody0\Pictures\스크린샷\스크린샷 2025-03-04 154324.png" width="500" height="700" style="object-fit: cover;" /></td>
+    <td><img src="public/스크린샷 2025-03-04 154846.png" width="500" height="550" style="object-fit: cover;" /></td>
   </tr>
     <tr>
     <td>완료 페이지</td>
-    <td><img src="C:\Users\jody0\Pictures\스크린샷\스크린샷 2025-03-04 154633.png" width="500" height="700" style="object-fit: cover;" /></td>
+    <td><img src="public/스크린샷 2025-03-04 154633.png" width="500" height="550" style="object-fit: cover;" /></td>
   </tr>
 </table>
 
@@ -67,7 +69,7 @@ AI를 통한 새로운 한글 낱말 및 영단어를 학습하고, 틀린 단�
 <table>
   <tr>
     <td>단어장 페이지</td>
-    <td><img src="C:\Users\jody0\Pictures\스크린샷\스크린샷 2025-03-04 160401.png" width="500" height="700" style="object-fit: cover;" /></td>
+    <td><img src="public/스크린샷 2025-03-04 160401.png" width="500" height="550" style="object-fit: cover;" /></td>
   </tr>
 </table>
 
@@ -125,8 +127,7 @@ AI 기술 접목을 처음해봐 어려움이 있었지만 오히려 MEXT.JS의 
 AI API는 무료 버전을 사용해 할당량에 자주 도달하여 ERROR 가 떳지만 오히려 그런 에러를 막기위한 또 다른 조건을 추가하여
 좀더 여러 에러에 대처하는 방법을 배웠습니다.
 
-# 시현 영상( 중간 에러는 AI 무료 버전으로 할당량을 전부 채워 요청이 거부된 상태입니다.
-
-# 그래서 기본 데이터를 출력하였습니다. )
-
-"C:\Users\jody0\Videos\화면 녹화\화면 녹화 중 2025-03-04 211214.mp4"
+# 시현 영상
+( 중간 에러는 AI 무료 버전으로 할당량을 전부 채워 요청이 거부된 상태입니다.그래서 중간부터는 기본 데이터가 출력되었습니다.. )
+[[📹 YouTube에서 시현 영상 보기](public/화면 녹화 중 2025-03-04 211214.mp4)](https://github.com/dasom-jo/Hangul-Word-Game/raw/main/public/화면%20녹화%20중%202025-03-04%20211214.mp4
+)
